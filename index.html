@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medico - Healthcare Services</title>
+    <style>
+        /* General Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header__content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav__item {
+            margin: 0 15px;
+        }
+
+        .nav__link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav__link:hover {
+            color: #0066cc;
+        }
+
+        .cta-buttons {
+            display: flex;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn--login {
+            background-color: transparent;
+            border: 2px solid #0066cc;
+            color: #0066cc;
+            margin-right: 10px;
+        }
+
+        .btn--signup {
+            background-color: #0066cc;
+            color: #fff;
+            border: 2px solid #0066cc;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background-color: #e0f7fa;
+            padding: 80px 0;
+        }
+
+        .hero__content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero__text {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .hero__title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #0066cc;
+        }
+
+        .hero__description {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .hero__cta {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn--primary {
+            background-color: #0066cc;
+            color: #fff;
+        }
+
+        .btn--secondary {
+            background-color: #fff;
+            color: #0066cc;
+            border: 2px solid #0066cc;
+        }
+
+        .hero__image {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .hero__img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Services Section Styles */
+        .services {
+            background-color: #fff;
+            padding: 80px 0;
+        }
+
+        .section__title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #0066cc;
+        }
+
+        .services__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service__card {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service__card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .service__title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #0066cc;
+        }
+
+        .service__description {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Doctors Section Styles */
+        .doctors {
+            background-color: #f0f8ff;
+            padding: 80px 0;
+        }
+
+        .doctors__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .doctor__card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .doctor__card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .doctor__image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .doctor__name {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #0066cc;
+        }
+
+        .doctor__specialty {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Testimonials Section Styles */
+        .testimonials {
+            background-color: #e0f7fa;
+            padding: 80px 0;
+        }
+
+        .testimonials__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial__card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial__text {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+            font-style: italic;
+        }
+
+        .testimonial__author {
+            font-size: 16px;
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer__content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer__text {
+            margin-bottom: 20px;
+        }
+
+        .footer__links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer__link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer__link:hover {
+            color: #0066cc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header__content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav__list {
+                margin-top: 20px;
+                flex-direction: column;
+            }
+
+            .nav__item {
+                margin: 10px 0;
+            }
+
+            .cta-buttons {
+                margin-top: 20px;
+            }
+
+            .hero__content {
+                flex-direction: column;
+            }
+
+            .hero__text, .hero__image {
+                max-width: 100%;
+            }
+
+            .hero__cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header__content">
+            <a href="#" class="logo">Medico</a>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">Services</a></li>
+                    <li class="nav__item"><a href="#" class="nav__link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn--login">Login</a>
+                <a href="#" class="btn btn--signup">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero__content">
+            <div class="hero__text">
+                <h1 class="hero__title">We Care About Your Health</h1>
+                <p class="hero__description">Find the best doctors and healthcare services online.</p>
+                <div class="hero__cta">
+                    <a href="#" class="btn btn--primary">Book an Appointment</a>
+                    <a href="#" class="btn btn--secondary">Play Video</a>
+                </div>
+            </div>
+            <div class="hero__image">
+                <img src="https://img.freepik.com/free-photo/doctor-nurses-special-equipment_23-2148980721.jpg?size=626&ext=jpg&ga=GA1.1.1974136662.1726076769&semt=ais_hybrid" alt="Healthcare Services" class="hero__img">
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h2 class="section__title">Our Best Services</h2>
+            <div class="services__grid">
+                <div class="service__card">
+                    <h3 class="service__title">24/7 Support</h3>
+                    <p class="service__description">Immediate care and support anytime.</p>
+                </div>
+                <div class="service__card">
+                    <h3 class="service__title">Privacy & Security</h3>
+                    <p class="service__description">Your data is safe with us.</p>
+                </div>
+                <div class="service__card">
+                    <h3 class="service__title">Verified Experts</h3>
+                    <p class="service__description">Consult with certified professionals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="doctors">
+        <div class="container">
+            <h2 class="section__title">Our Best Doctors</h2>
+            <div class="doctors__grid">
+                <div class="doctor__card">
+                    <img src="https://img.freepik.com/premium-photo/africanamerican-doctor-isolated-white-background-professional-occupation_1254992-38461.jpg?size=626&ext=jpg&ga=GA1.1.1974136662.1726076769&semt=ais_hybrid" alt="Dr. John Doe" class="doctor__image">
+                    <h3 class="doctor__name">Dr. John Doe</h3>
+                    <p class="doctor__specialty">Cardiologist</p>
+                </div>
+                <div class="doctor__card">
+                    <img src="https://img.freepik.com/free-photo/medium-shot-doctor-posing-studio_23-2150275683.jpg?size=626&ext=jpg&ga=GA1.1.1974136662.1726076769&semt=ais_hybrid" alt="Dr. Jane Smith" class="doctor__image">
+                    <h3 class="doctor__name">Dr. Jane Smith</h3>
+                    <p class="doctor__specialty">Dermatologist</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section__title">What People Say About Us</h2>
+            <div class="testimonials__grid">
+                <div class="testimonial__card">
+                    <p class="testimonial__text">"Great service and quick response!"</p>
+                    <h4 class="testimonial__author">- User A</h4>
+                </div>
+                <div class="testimonial__card">
+                    <p class="testimonial__text">"Highly recommend their services."</p>
+                    <h4 class="testimonial__author">- User B</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer__content">
+            <p class="footer__text">&copy; 2024 Medico. All rights reserved.</p>
+            <ul class="footer__links">
+                <li><a href="#" class="footer__link">Privacy Policy</a></li>
+                <li><a href="#" class="footer__link">Terms of Service</a></li>
+                <li><a href="#" class="footer__link">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+              </html>
